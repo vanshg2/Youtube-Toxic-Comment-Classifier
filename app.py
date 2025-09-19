@@ -4,6 +4,15 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from youtube_analyzer import analyze_youtube_comments
+import gzip
+import joblib
+
+@st.cache_resource
+def load_model():
+    model_path = 'Toxic_Analyzer.pkl.gz'
+    with gzip.open(model_path, 'rb') as f:
+        model = joblib.load(f)
+    return model
 
 def CheckToxic(text, model):
     pred = model.predict([text])[0]
@@ -11,12 +20,6 @@ def CheckToxic(text, model):
     return pred, max(proba)
 
 st.set_page_config(page_title="🛡️ Toxic Comment Analyzer", page_icon="🛡️", layout="wide", initial_sidebar_state="expanded")
-
-@st.cache_resource
-def load_model():
-    model_path = 'Toxic_Analyzer.pkl'
-    model = joblib.load(model_path)
-    return model
 
 def main():
     # --- Main Title Section ---
