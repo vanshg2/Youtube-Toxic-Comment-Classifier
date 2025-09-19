@@ -5,7 +5,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from youtube_analyzer import analyze_youtube_comments
 import gzip
-import joblib
 
 @st.cache_resource
 def load_model():
