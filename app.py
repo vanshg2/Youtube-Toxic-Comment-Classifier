@@ -9,9 +9,8 @@ import joblib
 
 @st.cache_resource
 def load_model():
-    model_path = 'Toxic_Analyzer.pkl'
-    with gzip.open(model_path, 'rb') as f:
-        model = joblib.load(f)
+    model_path = "Toxic_Analyzer.pkl"
+    model = joblib.load(model_path)
     return model
 def CheckToxic(text, model):
     pred = model.predict([text])[0]
@@ -150,4 +149,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
