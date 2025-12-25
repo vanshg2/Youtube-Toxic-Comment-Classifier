@@ -14,7 +14,7 @@ import gdown
 def load_model():
     FILE_ID = "1ILrlkKiJs-ceND7pCiXfMgHVvi5iNpZj"
     MODEL_NAME = "Toxic_Analyzer.pkl"
-    MODEL_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+    MODEL_URL = f"https://drive.google.com/uc?id=1ILrlkKiJs-ceND7pCiXfMgHVvi5iNpZj"
     
     if not os.path.exists(MODEL_NAME):
         gdown.download(MODEL_URL, MODEL_NAME, quiet=False)
@@ -150,3 +150,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
