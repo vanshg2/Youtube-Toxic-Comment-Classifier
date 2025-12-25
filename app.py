@@ -9,7 +9,7 @@ import joblib
 
 @st.cache_resource
 def load_model():
-    model_path = 'Toxic_Analyzer.pkl.gz'
+    model_path = 'Toxic_Analyzer.pkl'
     with gzip.open(model_path, 'rb') as f:
         model = joblib.load(f)
     return model
@@ -150,3 +150,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
