@@ -1,20 +1,19 @@
 # Virtual environment
 venv/
 
-# Model files
+# Model files (DO NOT upload)
 *.pkl
 *.pkl.gz
 
-# Datasets
+# Datasets (DO NOT upload)
 *.csv
 
-# Jupyter
+# Jupyter internal files only
 .ipynb_checkpoints/
-*.ipynb
 
 # Python cache
 __pycache__/
 *.pyc
 
-# Misc
+# Environment / secrets
 .env
