@@ -4,28 +4,22 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from youtube_analyzer import analyze_youtube_comments
-import gzip
 import os
 import gdown
 
 # ---------------- MODEL LOADING (GOOGLE DRIVE) ---------------- #
 
 @st.cache_resource
+@st.cache_resource
 def load_model():
-    # 🔴 REPLACE WITH YOUR GOOGLE DRIVE FILE ID
-    FILE_ID = "PASTE_YOUR_FILE_ID_HERE"
-
-    MODEL_NAME = "Toxic_Analyzer.pkl.gz"
+    FILE_ID = "1ILrlkKiJs-ceND7pCiXfMgHVvi5iNpZj"
+    MODEL_NAME = "Toxic_Analyzer.pkl"
     MODEL_URL = f"https://drive.google.com/uc?id={FILE_ID}"
-
-    # Download once
+    
     if not os.path.exists(MODEL_NAME):
         gdown.download(MODEL_URL, MODEL_NAME, quiet=False)
 
-    # Load compressed model
-    with gzip.open(MODEL_NAME, "rb") as f:
-        model = joblib.load(f)
-
+    model = joblib.load(MODEL_NAME)
     return model
 
 
@@ -46,7 +40,6 @@ st.set_page_config(
 
 
 def main():
-    # --- Main Title ---
     st.markdown(
         "<h1 style='text-align: center; color: #4F8EF7;'>🛡️ YouTube Toxic Comment Analyzer</h1>",
         unsafe_allow_html=True
@@ -59,12 +52,10 @@ def main():
 
     model = load_model()
 
-    # --- Sidebar ---
     with st.sidebar:
         st.title("🔹 Navigation")
         selection = st.radio("", ["🏡 Home", "🧪 Analyze Comments", "📊 Visualizations"])
 
-    # ---------------- HOME ---------------- #
     if selection == "🏡 Home":
         st.markdown(
             """
@@ -74,7 +65,6 @@ def main():
             unsafe_allow_html=True
         )
 
-    # ---------------- ANALYZE ---------------- #
     elif selection == "🧪 Analyze Comments":
         st.subheader("🎥 Analyze YouTube Comments")
         youtube_url = st.text_input("🔗 Enter YouTube Video Link:")
@@ -117,7 +107,6 @@ def main():
                     except Exception as e:
                         st.error(f"❌ Error: {e}")
 
-    # ---------------- VISUALIZATIONS ---------------- #
     elif selection == "📊 Visualizations":
         st.subheader("📊 Visualizations")
 
